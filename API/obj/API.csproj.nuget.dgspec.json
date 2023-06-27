@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\ProjectsApp\\API\\API.csproj": {}
+    "c:\\Projects\\ProjectsApp\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\ProjectsApp\\API\\API.csproj": {
+    "c:\\Projects\\ProjectsApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ProjectsApp\\API\\API.csproj",
+        "projectUniqueName": "c:\\Projects\\ProjectsApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Projects\\ProjectsApp\\API\\API.csproj",
+        "projectPath": "c:\\Projects\\ProjectsApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\bogda\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ProjectsApp\\API\\obj\\",
+        "outputPath": "c:\\Projects\\ProjectsApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bogda\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
