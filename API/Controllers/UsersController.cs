@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("AllowOrigin")] 
     public class UsersController : ControllerBase
     {
         private readonly DataContext context;
