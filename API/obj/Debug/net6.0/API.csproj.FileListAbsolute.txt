@@ -61,3 +61,11 @@ C:\Projects\ProjectsApp\API\bin\Debug\net6.0\runtimes\win-x64\native\e_sqlite3.d
 C:\Projects\ProjectsApp\API\bin\Debug\net6.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Humanizer.dll
 C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
