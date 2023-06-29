@@ -1,0 +1,17 @@
+<div class="container mt-5">
+    <div *ngIf="!registerMode"style="text-align: center;">
+        <h1>Manage your projects</h1>
+        <p class="lead">Project management web application. Sign up.</p>
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Register</button>
+        </div>
+    </div>
+    
+    <div *ngIf="registerMode"class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+            </div>
+        </div>
+    </div>
+</div>
