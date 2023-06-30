@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
     });
 }
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors("AllowOrigin");
 
