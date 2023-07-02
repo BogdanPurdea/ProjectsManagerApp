@@ -69,3 +69,6 @@ C:\Projects\ProjectsApp\API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\Data\UserSeedData.json
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\AutoMapper.dll
+C:\Projects\ProjectsApp\API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
