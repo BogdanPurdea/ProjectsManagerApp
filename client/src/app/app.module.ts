@@ -20,6 +20,8 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { CommentsComponent } from './comments/comments.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { CommentsComponent } from './comments/comments.component';
     ServerErrorComponent,
     ProjectListComponent,
     ProjectDetailComponent,
-    CommentsComponent
+    CommentsComponent,
+    MemberCardComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { CommentsComponent } from './comments/comments.component';
     SharedModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
