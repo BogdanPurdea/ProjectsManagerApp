@@ -455,4 +455,5 @@ $RECYCLE.BIN/
 
 appsettings.json
 projectsapp.db
-API/obj
+obj
+bin
