@@ -12,7 +12,7 @@ namespace API.Data.Migrations
                 name: "Introduction",
                 table: "Users",
                 type: "TEXT",
-                nullable: false,
+                nullable: true,
                 defaultValue: "");
         }
 
