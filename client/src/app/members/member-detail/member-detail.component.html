@@ -4,22 +4,25 @@
             <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}" 
                 class="card-img-top img-thumbnail">
             <div class="card-body">
-                <div>
-                    <strong>Location:</strong>
-                    <p>{{member.city}}, {{member.country}}</p>
+                <div class="mb-2" *ngIf="(presence.onlineUsers$ | async)!.includes(member.userName)">
+                    <i class="fa fa-user-circle text-success"></i> Online now    
                 </div>
-                <div>
-                    <strong>Age:</strong>
-                    <p>{{member.age}}</p>
-                </div>
-                <div>
-                    <strong>Last active:</strong>
-                    <p>{{member.lastActive | date: 'longDate'}}</p>
-                </div>
-                <div>
-                    <strong>Member since:</strong>
-                    <p>{{member.created | date: 'longDate'}}</p>
-                </div>
+                    <div>
+                        <strong>Location:</strong>
+                        <p>{{member.city}}, {{member.country}}</p>
+                    </div>
+                    <div>
+                        <strong>Age:</strong>
+                        <p>{{member.age}}</p>
+                    </div>
+                    <div>
+                        <strong>Last active:</strong>
+                        <p>{{member.lastActive | date: 'longDate'}}</p>
+                    </div>
+                    <div>
+                        <strong>Member since:</strong>
+                        <p>{{member.created | date: 'longDate'}}</p>
+                    </div>
             </div>
             <div class="card-footer">
                 <div class="btn-group d-flex">
@@ -47,7 +50,7 @@
             </tab>
             -->
             <tab heading="Messages" (selectTab)="onTabActivated($event)">
-                <app-member-messages [messages]="messages" [userName]="member.userName"></app-member-messages>
+                <app-member-messages [userName]="member.userName"></app-member-messages>
             </tab>
         </tabset>
     </div>

@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using API.Middleware;
 using Microsoft.AspNetCore.Identity;
 using API.Entities;
+using API.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,11 +24,14 @@ builder.Services.AddCors(options =>
                         {
                             builder.WithOrigins("http://localhost:4200")
                                 .AllowAnyHeader()
-                                .AllowAnyMethod();
+                                .AllowAnyMethod()
+                                .AllowCredentials();
                         });
                     });
 
 builder.Services.AddIdentityServices(builder.Configuration);
+
+builder.Services.AddSignalR();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -55,6 +59,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<PresenceHub>("hubs/presence");
+app.MapHub<MessageHub>("hubs/message");
 
 //Seed data
 using var scope = app.Services.CreateScope();
