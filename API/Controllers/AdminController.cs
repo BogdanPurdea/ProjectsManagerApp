@@ -37,12 +37,12 @@ namespace API.Controllers
             return Ok(users);
         }
         
-        [HttpPost("edit-roles/{username}")]
-        public async Task<ActionResult> EditRoles(string username, [FromQuery]string roles)
+        [HttpPost("edit-roles/{userName}")]
+        public async Task<ActionResult> EditRoles(string userName, [FromQuery]string roles)
         {
             var selectedRoles = roles.Split(",").ToArray();
 
-            var user = await userManager.FindByNameAsync(username);
+            var user = await userManager.FindByNameAsync(userName);
 
             if(user == null) return NotFound("Could not find user");
 

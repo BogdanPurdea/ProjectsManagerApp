@@ -69,9 +69,9 @@ namespace API.Controllers
                 KnownAs = user.KnownAs
             };
         }
-        private async Task<bool> UserExists(string username)
+        private async Task<bool> UserExists(string userName)
         {
-            return await userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
+            return await userManager.Users.AnyAsync(x => x.UserName == userName.ToLower());
         }
     }
 }

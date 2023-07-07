@@ -22,10 +22,10 @@ namespace API.Data
             this.context = context;
         }
 
-        public async Task<MemberDto> GetMemberAsync(string username)
+        public async Task<MemberDto> GetMemberAsync(string userName)
         {
             return await context.Users
-                .Where(x => x.UserName == username)
+                .Where(x => x.UserName == userName)
                 .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
@@ -51,11 +51,11 @@ namespace API.Data
             return await context.Users.FindAsync(id);
         }
 
-        public async Task<AppUser> GetUserByUsernameAsync(string username)
+        public async Task<AppUser> GetUserByUsernameAsync(string userName)
         {
             return await context.Users
                 .Include(p => p.Photos)
-                .SingleOrDefaultAsync(x => x.UserName == username);
+                .SingleOrDefaultAsync(x => x.UserName == userName);
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()

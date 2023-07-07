@@ -9,13 +9,13 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0" >
           <ng-container *ngIf="accountService.currentUser$ | async">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/members" routerLinkActive="active">Projects</a>
+              <a class="nav-link" routerLink="/members" routerLinkActive="active">Members</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/messages" routerLinkActive="active">Comments</a>
+              <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
             </li>
             <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
               <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
@@ -27,7 +27,7 @@
         </ul>
 
         <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-          <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.userName}}">
+          <img class="image-circle rounded-circle" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.userName}}">
           <a class="dropdown-toggle text-light ml-2" dropdownToggle >Welcome {{user.knownAs || user.userName | titlecase}}</a>
             <div class="dropdown-menu" *dropdownMenu>
               <a class="dropdown-item" [routerLink]="['/member/edit']">Edit Profile</a>
@@ -38,8 +38,8 @@
 
         <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="d-flex" role="login" (ngSubmit)="login()" autocomplete="off">
           <input 
-              name="username"
-              [(ngModel)]="model.username"
+              name="userName"
+              [(ngModel)]="model.userName"
               class="form-control me-2" 
               type="text" 
               placeholder="Username">

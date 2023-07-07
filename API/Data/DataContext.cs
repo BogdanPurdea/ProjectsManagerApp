@@ -13,6 +13,8 @@ namespace API.Data
         IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, 
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
+        public DbSet<AppUser> Users { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DataContext(DbContextOptions options) : base(options)
         {
         }
@@ -32,6 +34,16 @@ namespace API.Data
                 .WithOne(u => u.Role)
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
+
+            builder.Entity<Message>()
+                .HasOne(u => u.Recipient)
+                .WithMany(m => m.MessagesReceived)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Message>()
+                .HasOne(u => u.Sender)
+                .WithMany(m => m.MessagesSent)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
