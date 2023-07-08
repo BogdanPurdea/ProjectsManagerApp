@@ -26,11 +26,11 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await UserExists(registerDto.UserName)) return BadRequest("Username is taken");
+            if (await UserExists(registerDto.UserName!)) return BadRequest("Username is taken");
 
             var user = mapper.Map<AppUser>(registerDto);
 
-            user.UserName = registerDto.UserName.ToLower();
+            user.UserName = registerDto.UserName!.ToLower();
 
             var result = await userManager.CreateAsync(user, registerDto.Password);
 
@@ -53,7 +53,7 @@ namespace API.Controllers
         {
             var user = await userManager.Users
                 .Include(p => p.Photos)
-                .SingleOrDefaultAsync(x => x.UserName == loginDto.UserName.ToLower());
+                .SingleOrDefaultAsync(x => x.UserName == loginDto.UserName!.ToLower());
 
             if (user == null) return Unauthorized("Invalid username");
 
@@ -65,7 +65,7 @@ namespace API.Controllers
             {
                 UserName = user.UserName,
                 Token = await this.tokenService.CreateToken(user),
-                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                PhotoUrl = user.Photos!.FirstOrDefault(x => x.IsMain)?.Url,
                 KnownAs = user.KnownAs
             };
         }
