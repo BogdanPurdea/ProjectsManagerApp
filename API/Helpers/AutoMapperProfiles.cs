@@ -15,12 +15,17 @@ namespace API.Helpers
         {
             CreateMap<AppUser, MemberDto>()
                 .ForMember(destination => destination.PhotoUrl, options => options.MapFrom(source => 
-                    source.Photos.FirstOrDefault(x => x.IsMain).Url))
+                    source.Photos!.FirstOrDefault(x => x.IsMain)!.Url))
                 .ForMember(destination => destination.Age, options => options.MapFrom(source =>
                 source.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<RegisterDto, AppUser>();
+            CreateMap<Message, MessageDto>()
+                .ForMember(destination => destination.SenderPhotoUrl, options => options.MapFrom(source => 
+                    source.Sender!.Photos!.FirstOrDefault(x => x.IsMain)!.Url))
+                .ForMember(destination => destination.RecipientPhotoUrl, options => options.MapFrom(source => 
+                    source.Recipient!.Photos!.FirstOrDefault(x => x.IsMain)!.Url));
         }
     }
 }
