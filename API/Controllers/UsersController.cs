@@ -46,6 +46,7 @@ namespace API.Controllers
         [HttpGet("{userName}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string userName)
         {
+            var user = await unitOfWork.UserRepository.GetMemberAsync(userName);
             return await unitOfWork.UserRepository.GetMemberAsync(userName);
         }
 
@@ -78,10 +79,8 @@ namespace API.Controllers
                 PublicId = result.PublicId
             };
 
-            if(user.Photos!.Count == 0)
-            {
-                photo.IsMain = true;
-            }
+            photo.IsMain = false;
+            photo.IsApproved = "unapproved";
 
             user.Photos.Add(photo);
 
@@ -102,6 +101,8 @@ namespace API.Controllers
 
             if(photo!.IsMain) return BadRequest("This is already your main photo");
 
+            if(photo.IsApproved != "approved") return BadRequest("Cannot set unapproved photo as main photo");
+
             var currentMain = user.Photos!.FirstOrDefault(x => x.IsMain);
             if(currentMain != null) currentMain.IsMain = false;
             photo.IsMain = true;
@@ -114,9 +115,7 @@ namespace API.Controllers
         [HttpDelete("delete-photo/{photoId}")]
         public async Task<ActionResult> DeletePhoto(int photoId)
         {
-            var user = await unitOfWork.UserRepository.GetUserByUserNameAsync(User.GetUserName());
-
-            var photo = user.Photos!.FirstOrDefault(x => x.Id == photoId);
+            var photo = await unitOfWork.PhotoRepository.GetPhotoByIdAsync(photoId);
 
             if(photo == null) return NotFound();
 
@@ -128,7 +127,7 @@ namespace API.Controllers
                 if(result.Error != null) return BadRequest(result.Error.Message);
             }
 
-            user.Photos!.Remove(photo);
+            unitOfWork.PhotoRepository.RemovePhoto(photo);
 
             if(await unitOfWork.Complete()) return Ok();
 
