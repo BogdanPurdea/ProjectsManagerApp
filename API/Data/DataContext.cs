@@ -21,6 +21,7 @@ namespace API.Data
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Project> Projects { get; set; }
         public DataContext(DbContextOptions options) : base(options)
         {
         }
@@ -54,6 +55,16 @@ namespace API.Data
             builder.Entity<Photo>()
                 .HasOne(u => u.AppUser)
                 .WithMany(p => p.Photos);
+            
+            builder.Entity<Project>()
+                .HasOne(u => u.Creator)
+                .WithMany(p => p.CreatedProjects)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Project>()
+                .HasMany(p => p.AssociatedUsers)
+                .WithMany(u => u.AssociatedProjects)
+                .UsingEntity<UserProject>();
 
             builder.ApplyUtcDateTimeConverter();
         }

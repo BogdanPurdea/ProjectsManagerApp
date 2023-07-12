@@ -8,6 +8,7 @@ namespace API.Interfaces
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
+        IProjectRepository ProjectRepository { get; }
         IMessageRepository MessageRepository { get; }
         IPhotoRepository PhotoRepository { get; }
         Task<bool> Complete();

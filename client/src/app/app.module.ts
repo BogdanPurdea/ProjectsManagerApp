@@ -62,7 +62,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     PhotoManagementComponent,
     RolesModalComponent,
     MemberMessagesComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

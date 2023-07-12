@@ -34,7 +34,7 @@ namespace API.Data
         {
             var query = context.Users.AsQueryable();
 
-            query = query.Where(u => u.UserName != userParams.CurrentUsername && u.UserRoles!.Any(r => r.Role!.Name == "Member"));
+            query = query.Where(u => u.UserName != userParams.CurrentUserName && u.UserRoles!.Any(r => r.Role!.Name == "Member"));
 
             query = userParams.OrderBy switch
             {
