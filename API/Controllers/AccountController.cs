@@ -34,12 +34,12 @@ namespace API.Controllers
 
             var result = await userManager.CreateAsync(user, registerDto.Password);
 
-            if(!result.Succeeded) return BadRequest(result.Errors);
+            if (!result.Succeeded) return BadRequest(result.Errors);
 
             var roleResult = await userManager.AddToRoleAsync(user, "Member");
 
-            if(!roleResult.Succeeded) return BadRequest(result.Errors);
-            
+            if (!roleResult.Succeeded) return BadRequest(result.Errors);
+
             return new UserDto
             {
                 UserName = user.UserName,
@@ -59,7 +59,7 @@ namespace API.Controllers
 
             var result = await signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-            if(!result.Succeeded) return Unauthorized();
+            if (!result.Succeeded) return Unauthorized();
 
             return new UserDto
             {

@@ -1,0 +1,19 @@
+.item-link {
+    border-style: solid;
+    border-width: 2px;
+    border-left-width: 10px;
+    border-color: black black black green;
+    margin-bottom: 15px;
+    height: auto !important;
+}
+
+.list-item-title {
+    font-weight: bold;
+    font-size: 35px;
+    margin: 0;
+}
+
+.list-item-description {
+    font-size: 30px;
+}
+

@@ -8,7 +8,7 @@
             </div>
         </th>
         <tr>
-            <div class="container" style="padding: 20%;">
+            <div class="container button-container">
                 <td><button [disabled]="photo.isMain || photo.isApproved !== 'approved'" (click)="setMainPhoto(photo)"
                         [ngClass]="photo.isMain ? 'btn-success active' : 'btn-outline-success'"
                         class="btn btn-sm">Main</button></td>

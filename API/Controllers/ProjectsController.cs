@@ -8,10 +8,12 @@ using API.Extensions;
 using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class ProjectsController : BaseApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -25,12 +27,15 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectDto>>> GetProjects([FromQuery]ProjectParams projectParams)
         {
-            var projects = await unitOfWork.ProjectRepository.GetProjectsAsync(projectParams);
+            var userId = User.GetUserId();
+
+            var projects = await unitOfWork.ProjectRepository.GetProjectsAsync(projectParams, userId);
 
             Response.AddPaginationHeader(projects.CurrentPage, projects.PageSize, projects.TotalCount, projects.TotalPages);
 
             return Ok(projects);
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ProjectDto>> GetProjectById(int id)
@@ -55,6 +60,7 @@ namespace API.Controllers
                 Creator = creator,
                 IsFinished = false,
                 IsApproved = false,
+                Contributors = new List<AppUser> {creator}
             };
 
             unitOfWork.ProjectRepository.Add(project);
@@ -66,5 +72,33 @@ namespace API.Controllers
 
             return BadRequest("Failed to create project");
         }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateProject(int id)
+        {
+            var project = await unitOfWork.ProjectRepository.GetProjectByIdAsync(id);
+
+            unitOfWork.ProjectRepository.Update(project);
+
+            if(await unitOfWork.Complete()) return NoContent();
+            
+            return BadRequest("Failed to update project");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProject(int id)
+        {
+            var project = await unitOfWork.ProjectRepository.GetProjectByIdAsync(id);
+
+            if(project==null)
+                return NotFound();
+
+            unitOfWork.ProjectRepository.Delete(project);
+
+            if(await unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Could not delete project");
+        }
+
     }
 }

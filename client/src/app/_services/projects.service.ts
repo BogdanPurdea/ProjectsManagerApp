@@ -31,6 +31,21 @@ export class ProjectsService {
   }
 
   getProjects(projectParams: ProjectParams) {
+    return this.getPaginatedProjects(projectParams, this.baseUrl + 'projects');
+
+  }
+
+  getProject(id: number) {
+    const project = [...this.projectCache.values()]
+      .reduce((array, element) => array.concat(element.result), [])
+      .find((project: Project) => project.id === id);
+    if(project) {
+      return of(project);
+    }
+    return this.http.get<Project>(this.baseUrl + 'projects/' + id);
+  }
+
+  getPaginatedProjects(projectParams: ProjectParams, url: string) {
     var response = this.projectCache.get(Object.values(projectParams).join('-'));
     if(response) {
       return of(response);
@@ -38,8 +53,9 @@ export class ProjectsService {
 
     let params = getPaginationHeaders(projectParams.pageNumber, projectParams.pageSize);
     params = params.append('orderBy', projectParams.orderBy.toString());
+    params = params.append('hasUser', projectParams.hasUser.toString());
 
-    return getPaginatedResult<Project[]>(this.baseUrl + 'projects', params, this.http)
+    return getPaginatedResult<Project[]>(url, params, this.http)
       .pipe(map(response => {
         this.projectCache.set(Object.values(projectParams).join('-'), response);
         return response;

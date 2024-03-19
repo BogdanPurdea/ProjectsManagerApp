@@ -13,7 +13,6 @@ namespace API.Entities
         public AppUser Creator { get; set; }
         public bool IsFinished { get; set; }
         public bool IsApproved { get; set; }
-        public ICollection<AppUser>? AssociatedUsers { get; set; }
-        public ICollection<UserProject>? UserProjects { get; set; }
+        public ICollection<AppUser>? Contributors { get; set; }
     }
 }

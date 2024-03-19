@@ -1,30 +1,40 @@
-<div class="container mt-3">Filters 
+<div class="filter-container mt-3">Filters
     <form #form="ngForm" class="form-inline mb-3" autocomplete="off">
         <div class="btn-group">
             <button type="button" class="btn btn-primary" name="orderBy" (click)="loadProjects()" btnRadio="id"
                 [(ngModel)]="projectParams.orderBy">By id</button>
-            <button type="button" class="btn btn-primary" name="orderBy" (click)="loadProjects()" btnRadio="alphabetically"
-                [(ngModel)]="projectParams.orderBy">Alphabetically</button>
+            <button type="button" class="btn btn-primary" name="orderBy" (click)="loadProjects()"
+                btnRadio="alphabetically" [(ngModel)]="projectParams.orderBy">Alphabetically</button>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary" name="hasUser" (click)="loadProjects()" btnRadio="false"
+                [(ngModel)]="projectParams.hasUser">All projects</button>
+            <button type="button" class="btn btn-primary" name="hasUser" (click)="loadProjects()"
+                btnRadio="true" [(ngModel)]="projectParams.hasUser">My projects</button>
         </div>
     </form>
 </div>
+
 <div class="row" *ngIf="projects?.length === 0">
     <h3>No projects</h3>
 </div>
-<div class="row">
-    <table class="table">
-        <tr>
-            <th style="width: 30%">Project name</th>
-            <th style="width: 40%">Description</th>
-            <th style="width: 30%"></th>
-        </tr>
-        <tr *ngFor="let project of projects">
-            <td>{{project.projectName}}</td>
-            <td>{{project.projectDescription}}</td>
-            <td><button class="btn btn-info">View Details</button></td>
-        </tr>
-    </table>
+
+<div class="container">
+    <div>
+        <mat-nav-list>
+            <a mat-list-item *ngFor="let project of projects" class="item-link" routerLink="/projects/{{project.id}}" routerLinkActive="active" >
+                <p>
+                    <span matListItemTitle [ngClass]="'list-item-title'">{{project.projectName}}</span>
+                </p>
+                <p>
+                    <span matListItemLine [ngClass]="'list-item-description'">{{project.projectDescription}}</span>
+                </p>
+            </a> 
+        </mat-nav-list>
+    </div>
 </div>
+
 <div class="d-flex justify-content-center" *ngIf="pagination">
     <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
         [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"

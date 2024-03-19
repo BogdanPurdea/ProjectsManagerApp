@@ -46,46 +46,16 @@ namespace API.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "UserProject",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ProjectId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserProject", x => new { x.ProjectId, x.UserId });
-                    table.ForeignKey(
-                        name: "FK_UserProject_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserProject_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
+            
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_CreatorId",
                 table: "Projects",
                 column: "CreatorId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_UserProject_UserId",
-                table: "UserProject",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "UserProject");
 
             migrationBuilder.DropTable(
                 name: "Projects");

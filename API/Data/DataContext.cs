@@ -61,11 +61,6 @@ namespace API.Data
                 .WithMany(p => p.CreatedProjects)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Project>()
-                .HasMany(p => p.AssociatedUsers)
-                .WithMany(u => u.AssociatedProjects)
-                .UsingEntity<UserProject>();
-
             builder.ApplyUtcDateTimeConverter();
         }
     }

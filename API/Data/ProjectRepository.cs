@@ -21,12 +21,12 @@ namespace API.Data
             this.mapper = mapper;
             this.context = context;
         }
-
+        
         public void Add(Project project)
         {
             context.Projects.Add(project);
         }
-
+        
         public void Delete(Project project)
         {
             context.Projects.Remove(project);
@@ -57,9 +57,15 @@ namespace API.Data
             return await context.Projects.ToListAsync();
         }
 
-        public async Task<PagedList<ProjectDto>> GetProjectsAsync(ProjectParams projectParams)
+        public async Task<PagedList<ProjectDto>> GetProjectsAsync(ProjectParams projectParams, int userId)
         {
             var query = context.Projects.AsQueryable();
+
+            query = projectParams.hasUser switch
+            {
+                true => query.Where(p => p.Creator.Id == userId),
+                _ => query
+            };
 
             query = projectParams.OrderBy switch
             {
@@ -69,13 +75,6 @@ namespace API.Data
 
             return await PagedList<ProjectDto>.CreateAsync(query.ProjectTo<ProjectDto>(mapper
             .ConfigurationProvider).AsNoTracking(), projectParams.PageNumber, projectParams.PageSize);
-        }
-
-        public async Task<IEnumerable<Project>> GetProjectsByUserIdAsync(int id)
-        {
-            return await context.Projects
-                .Where(p => p.Creator.Id == id)
-                .ToListAsync();
         }
 
         public void Update(Project project)

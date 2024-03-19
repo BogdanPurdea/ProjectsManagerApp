@@ -34,6 +34,7 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     RolesModalComponent,
     MemberMessagesComponent,
     ConfirmDialogComponent,
+    ProjectEditComponent,
   ],
   imports: [
     BrowserModule,

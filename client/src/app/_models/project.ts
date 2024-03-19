@@ -5,5 +5,5 @@ export interface Project {
     creatorName: string;
     isFinished: boolean;
     isApproved: boolean;
-    associatedUsers: string[];
+    contributors: string[];
   }

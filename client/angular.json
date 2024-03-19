@@ -32,6 +32,7 @@
               "./node_modules/ngx-toastr/toastr.css",
               "./node_modules/ngx-spinner/animations/line-scale-party.css",
               "./node_modules/ngx-spinner/animations/pacman.css",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []

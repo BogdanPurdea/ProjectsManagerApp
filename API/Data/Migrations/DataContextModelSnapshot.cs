@@ -281,19 +281,19 @@ namespace API.Data.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("API.Entities.UserProject", b =>
+            modelBuilder.Entity("AppUserProject", b =>
                 {
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("AssociatedProjectsId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("ContributorsId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ProjectId", "UserId");
+                    b.HasKey("AssociatedProjectsId", "ContributorsId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ContributorsId");
 
-                    b.ToTable("UserProject");
+                    b.ToTable("AppUserProject");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -447,23 +447,19 @@ namespace API.Data.Migrations
                     b.Navigation("Creator");
                 });
 
-            modelBuilder.Entity("API.Entities.UserProject", b =>
+            modelBuilder.Entity("AppUserProject", b =>
                 {
-                    b.HasOne("API.Entities.Project", "Project")
-                        .WithMany("UserProjects")
-                        .HasForeignKey("ProjectId")
+                    b.HasOne("API.Entities.Project", null)
+                        .WithMany()
+                        .HasForeignKey("AssociatedProjectsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Entities.AppUser", "User")
-                        .WithMany("UserProjects")
-                        .HasForeignKey("UserId")
+                    b.HasOne("API.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("ContributorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Project");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -517,19 +513,12 @@ namespace API.Data.Migrations
 
                     b.Navigation("Photos");
 
-                    b.Navigation("UserProjects");
-
                     b.Navigation("UserRoles");
                 });
 
             modelBuilder.Entity("API.Entities.Group", b =>
                 {
                     b.Navigation("Connections");
-                });
-
-            modelBuilder.Entity("API.Entities.Project", b =>
-                {
-                    b.Navigation("UserProjects");
                 });
 #pragma warning restore 612, 618
         }

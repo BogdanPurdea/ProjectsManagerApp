@@ -14,6 +14,6 @@ namespace API.DTOs
         public string? CreatorName { get; set; }
         public bool IsFinished { get; set; }
         public bool IsApproved { get; set; }
-        public ICollection<AppUser>? AssociatedUsers { get; set; }
+        public ICollection<string>? Contributors { get; set; }
     }
 }

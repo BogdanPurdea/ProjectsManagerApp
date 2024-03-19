@@ -10,5 +10,7 @@ namespace API.Helpers
         public string? ProjectName { get; set; }
 
         public string OrderBy { get; set; } = "id";
+
+        public bool hasUser { get; set; } = false;
     }
 }

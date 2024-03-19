@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230711153831_ProjectsAdded")]
-    partial class ProjectsAdded
+    [Migration("20240128093539_ChangedProjects")]
+    partial class ChangedProjects
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -283,7 +283,21 @@ namespace API.Data.Migrations
                     b.ToTable("Projects");
                 });
 
-            
+            modelBuilder.Entity("AppUserProject", b =>
+                {
+                    b.Property<int>("AssociatedProjectsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ContributorsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("AssociatedProjectsId", "ContributorsId");
+
+                    b.HasIndex("ContributorsId");
+
+                    b.ToTable("AppUserProject");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -435,7 +449,21 @@ namespace API.Data.Migrations
                     b.Navigation("Creator");
                 });
 
-            
+            modelBuilder.Entity("AppUserProject", b =>
+                {
+                    b.HasOne("API.Entities.Project", null)
+                        .WithMany()
+                        .HasForeignKey("AssociatedProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("ContributorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("API.Entities.AppRole", null)
@@ -494,7 +522,6 @@ namespace API.Data.Migrations
                 {
                     b.Navigation("Connections");
                 });
-
 #pragma warning restore 612, 618
         }
     }

@@ -15,6 +15,8 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AdminGuard } from './_guards/admin.guard';
 import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
+import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
+import { ProjectDetailedResolver } from './_resolvers/project-detailed.resolver';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,6 +26,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'projects', component: ProjectListComponent},
+      {path: 'projects/:id', component: ProjectDetailComponent, resolve: {project: ProjectDetailedResolver}},
       {path: 'members', component: MemberListComponent},
       {path: 'members/:userName', component: MemberDetailComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},

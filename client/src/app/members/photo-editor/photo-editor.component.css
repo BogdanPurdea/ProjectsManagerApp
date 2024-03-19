@@ -16,6 +16,12 @@ input[type=file] {
     position: relative;
     text-align: center;
     color: white;
+
+}
+
+.button-container {
+    padding: 5px;
+    margin-left: 30px;
 }
 
 .centered {
@@ -24,4 +30,8 @@ input[type=file] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
+
+.col-2 {
+    width: 200px;
+}
