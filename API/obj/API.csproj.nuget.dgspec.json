@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\ProjectsApp\\API\\API.csproj": {}
+    "C:\\Projects\\Repositories\\ProjectsManagerApp\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\ProjectsApp\\API\\API.csproj": {
+    "C:\\Projects\\Repositories\\ProjectsManagerApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\ProjectsApp\\API\\API.csproj",
+        "projectUniqueName": "C:\\Projects\\Repositories\\ProjectsManagerApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Projects\\ProjectsApp\\API\\API.csproj",
+        "projectPath": "C:\\Projects\\Repositories\\ProjectsManagerApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\bogda\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\ProjectsApp\\API\\obj\\",
+        "outputPath": "C:\\Projects\\Repositories\\ProjectsManagerApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bogda\\AppData\\Roaming\\NuGet\\NuGet.Config"

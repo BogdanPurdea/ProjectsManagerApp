@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReplaySubject, map } from 'rxjs';
+import { ReplaySubject, catchError, map, tap, throwError } from 'rxjs';
 import { User } from '../_models/user';
 import { environment } from 'src/environments/environment';
 import { PresenceService } from './presence.service';
@@ -17,31 +17,39 @@ export class AccountService {
 
   login(model: any) {
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
-      map((response: User) => {
-        const user = response;
-        if (user) {
-          this.setCurrentUser(user);
-          this.presence.createHubConnection(user);
-        }
-        return response;
-      })
+      tap({
+          next: (user: User) => {
+            if (user) {
+              this.setCurrentUser(user);
+              this.presence.createHubConnection(user);
+            }
+          },
+          error: (error) => {
+            console.error('Login error:', error);
+            return throwError(() => new Error('Login failed'));  // Rethrow error as Observable
+          }
+        })
     )
   }
 
   register(model: any) {
     return this.http.post(this.baseUrl + 'account/register', model).pipe(
-      map((user: any) => {
-        if(user) {
-          this.setCurrentUser(user);
-          this.presence.createHubConnection(user);
+      tap({
+        next: (user: any) => {
+          if (user) {
+            this.setCurrentUser(user);
+            this.presence.createHubConnection(user);
+          }
+        }, error: (error) => {
+          console.error('Register error:', error);
+          return throwError(() => new Error('Registration failed'));  // Rethrow error as Observable
         }
       })
     )
   }
 
   setCurrentUser(user: User) {
-    if(user != null)
-    {
+    if (user != null) {
       user.roles = [];
       const roles = this.getDecodedToken(user.token).role;
       Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);

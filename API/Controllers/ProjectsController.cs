@@ -73,10 +73,12 @@ namespace API.Controllers
             return BadRequest("Failed to create project");
         }
 
-        [HttpPut]
-        public async Task<ActionResult> UpdateProject(int id)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateProject(int id, ProjectUpdateDto projectUpdateDto)
         {
             var project = await unitOfWork.ProjectRepository.GetProjectByIdAsync(id);
+
+            mapper.Map(projectUpdateDto, project);
 
             unitOfWork.ProjectRepository.Update(project);
 

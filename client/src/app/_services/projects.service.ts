@@ -61,4 +61,12 @@ export class ProjectsService {
         return response;
       }));
   }
+
+  updateProject(id: number) {
+    return this.http.put(this.baseUrl + 'projects', id);
+  }
+
+  deleteProject(id: number) {
+    return this.http.delete(this.baseUrl + 'projects/' + id);
+  }
 }

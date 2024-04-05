@@ -19,16 +19,16 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    this.accountService.login(this.model).subscribe(
-      (response: User) => {
-        this.router.navigateByUrl('/projects');
+    this.accountService.login(this.model).subscribe({
+      next: (response: User) => {
+        this.router.navigate(['/projects']);
         console.log(this.accountService.currentUser$);
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
-        this.toastr.error(error.error);
+        this.toastr.error(error.errorMessage);
       }
-    );
+    });
   }
 
   logout() {
