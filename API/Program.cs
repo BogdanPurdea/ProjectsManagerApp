@@ -22,7 +22,7 @@ builder.Services.AddCors(options =>
                     {
                         options.AddPolicy("AllowOrigin", builder =>
                         {
-                            builder.WithOrigins("http://localhost:4200")
+                            builder.WithOrigins("https://localhost:4200")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod()
                                 .AllowCredentials();
@@ -73,6 +73,7 @@ try
     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
     await context.Database.MigrateAsync();
     await Seed.SeedUsers(userManager, roleManager);
+    await Seed.SeedProjects(context);
 }
 catch (Exception ex)
 {

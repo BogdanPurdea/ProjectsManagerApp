@@ -1,0 +1,318 @@
+[
+    {
+        "ProjectName": "Project A",
+        "ProjectDescription": "Description for Project A.",
+        "Creator": {
+            "UserName": "elaine",
+            "KnownAs": "Elaine"
+        },
+        "IsFinished": false,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "tracy",
+                "KnownAs": "Tracy"
+            },
+            {
+                "UserName": "polly",
+                "KnownAs": "Polly"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Software Development",
+        "ProjectDescription": "Developing a new software application.",
+        "Creator": {
+            "UserName": "jefferson",
+            "KnownAs": "Jefferson"
+        },
+        "IsFinished": true,
+        "IsApproved": false,
+        "Contributors": [
+            {
+                "UserName": "ashley",
+                "KnownAs": "Ashley"
+            },
+            {
+                "UserName": "gilbert",
+                "KnownAs": "Gilbert"
+            },
+            {
+                "UserName": "lucy",
+                "KnownAs": "Lucy"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Marketing Strategy",
+        "ProjectDescription": "Creating a marketing strategy for the upcoming campaign.",
+        "Creator": {
+            "UserName": "pam",
+            "KnownAs": "Pam"
+        },
+        "IsFinished": false,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "charles",
+                "KnownAs": "Charles"
+            },
+            {
+                "UserName": "tracy",
+                "KnownAs": "Tracy"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Event Planning",
+        "ProjectDescription": "Planning a corporate event.",
+        "Creator": {
+            "UserName": "lucy",
+            "KnownAs": "Lucy"
+        },
+        "IsFinished": false,
+        "IsApproved": false,
+        "Contributors": [
+            {
+                "UserName": "elaine",
+                "KnownAs": "Elaine"
+            },
+            {
+                "UserName": "polly",
+                "KnownAs": "Polly"
+            },
+            {
+                "UserName": "gilbert",
+                "KnownAs": "Gilbert"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Research Initiative",
+        "ProjectDescription": "Conducting research on industry trends.",
+        "Creator": {
+            "UserName": "mcfarland",
+            "KnownAs": "Mcfarland"
+        },
+        "IsFinished": true,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "ashley",
+                "KnownAs": "Ashley"
+            },
+            {
+                "UserName": "pam",
+                "KnownAs": "Pam"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Product Launch",
+        "ProjectDescription": "Launching a new product in the market.",
+        "Creator": {
+            "UserName": "tracy",
+            "KnownAs": "Tracy"
+        },
+        "IsFinished": false,
+        "IsApproved": false,
+        "Contributors": [
+            {
+                "UserName": "jefferson",
+                "KnownAs": "Jefferson"
+            },
+            {
+                "UserName": "charles",
+                "KnownAs": "Charles"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Training Program",
+        "ProjectDescription": "Implementing a training program for employees.",
+        "Creator": {
+            "UserName": "elaine",
+            "KnownAs": "Elaine"
+        },
+        "IsFinished": true,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "lucy",
+                "KnownAs": "Lucy"
+            },
+            {
+                "UserName": "polly",
+                "KnownAs": "Polly"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Website Redesign",
+        "ProjectDescription": "Redesigning the company website for a modern look.",
+        "Creator": {
+            "UserName": "polly",
+            "KnownAs": "Polly"
+        },
+        "IsFinished": false,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "tracy",
+                "KnownAs": "Tracy"
+            },
+            {
+                "UserName": "jefferson",
+                "KnownAs": "Jefferson"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Finance Management",
+        "ProjectDescription": "Optimizing financial processes and management.",
+        "Creator": {
+            "UserName": "ashley",
+            "KnownAs": "Ashley"
+        },
+        "IsFinished": true,
+        "IsApproved": false,
+        "Contributors": [
+            {
+                "UserName": "mcfarland",
+                "KnownAs": "Mcfarland"
+            },
+            {
+                "UserName": "charles",
+                "KnownAs": "Charles"
+            },
+            {
+                "UserName": "pam",
+                "KnownAs": "Pam"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Mobile App Development",
+        "ProjectDescription": "Creating a mobile application for customers.",
+        "Creator": {
+            "UserName": "gilbert",
+            "KnownAs": "Gilbert"
+        },
+        "IsFinished": false,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "elaine",
+                "KnownAs": "Elaine"
+            },
+            {
+                "UserName": "lucy",
+                "KnownAs": "Lucy"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Human Resources Improvement",
+        "ProjectDescription": "Improving HR processes and employee satisfaction.",
+        "Creator": {
+            "UserName": "charles",
+            "KnownAs": "Charles"
+        },
+        "IsFinished": true,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "polly",
+                "KnownAs": "Polly"
+            },
+            {
+                "UserName": "mcfarland",
+                "KnownAs": "Mcfarland"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Customer Support Enhancement",
+        "ProjectDescription": "Enhancing customer support services.",
+        "Creator": {
+            "UserName": "jefferson",
+            "KnownAs": "Jefferson"
+        },
+        "IsFinished": false,
+        "IsApproved": false,
+        "Contributors": [
+            {
+                "UserName": "tracy",
+                "KnownAs": "Tracy"
+            },
+            {
+                "UserName": "ashley",
+                "KnownAs": "Ashley"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Community Outreach",
+        "ProjectDescription": "Engaging with the community through outreach programs.",
+        "Creator": {
+            "UserName": "ashley",
+            "KnownAs": "Ashley"
+        },
+        "IsFinished": false,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "lucy",
+                "KnownAs": "Lucy"
+            },
+            {
+                "UserName": "pam",
+                "KnownAs": "Pam"
+            },
+            {
+                "UserName": "gilbert",
+                "KnownAs": "Gilbert"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Eco-Friendly Initiatives",
+        "ProjectDescription": "Implementing eco-friendly practices within the organization.",
+        "Creator": {
+            "UserName": "pam",
+            "KnownAs": "Pam"
+        },
+        "IsFinished": true,
+        "IsApproved": true,
+        "Contributors": [
+            {
+                "UserName": "elaine",
+                "KnownAs": "Elaine"
+            },
+            {
+                "UserName": "charles",
+                "KnownAs": "Charles"
+            }
+        ]
+    },
+    {
+        "ProjectName": "Social Media Campaign",
+        "ProjectDescription": "Running a campaign on social media platforms.",
+        "Creator": {
+            "UserName": "gilbert",
+            "KnownAs": "Gilbert"
+        },
+        "IsFinished": false,
+        "IsApproved": false,
+        "Contributors": [
+            {
+                "UserName": "tracy",
+                "KnownAs": "Tracy"
+            },
+            {
+                "UserName": "mcfarland",
+                "KnownAs": "Mcfarland"
+            }
+        ]
+    }
+]

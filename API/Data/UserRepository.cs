@@ -34,7 +34,7 @@ namespace API.Data
         {
             var query = context.Users.AsQueryable();
 
-            query = query.Where(u => u.UserName != userParams.CurrentUsername && u.UserRoles!.Any(r => r.Role!.Name == "Member"));
+            query = query.Where(u => u.UserName != userParams.CurrentUserName && u.UserRoles!.Any(r => r.Role!.Name == "Member"));
 
             query = userParams.OrderBy switch
             {
@@ -51,6 +51,13 @@ namespace API.Data
             return await context.Users.FindAsync(id);
         }
 
+        public async Task<AppUser> GetUserByPhotoAsync(Photo photo)
+        {
+            return await context.Users
+                .Where(x => x.Photos.Contains(photo))
+                .SingleOrDefaultAsync();
+        }
+
         public async Task<AppUser> GetUserByUserNameAsync(string userName)
         {
             return await context.Users
@@ -61,7 +68,6 @@ namespace API.Data
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await context.Users
-                .Include(p => p.Photos)
                 .ToListAsync();
         }
 

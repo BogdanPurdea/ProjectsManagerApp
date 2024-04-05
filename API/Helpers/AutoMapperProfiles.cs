@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
-using API.Extensions;
 using AutoMapper;
 
 namespace API.Helpers
@@ -16,11 +15,20 @@ namespace API.Helpers
             CreateMap<AppUser, MemberDto>()
                 .ForMember(destination => destination.PhotoUrl, options => options.MapFrom(source => 
                     source.Photos!.FirstOrDefault(x => x.IsMain)!.Url))
-                .ForMember(destination => destination.Age, options => options.MapFrom(source =>
-                source.DateOfBirth.CalculateAge()));
+                .ForMember(destination => destination.AssociatedProjects, options => options.MapFrom(source => 
+                    source.AssociatedProjects!.Select(p => p.ProjectName)));
+            CreateMap<Project, ProjectDto>()
+                .ForMember(destination => destination.CreatorName, options => options.MapFrom(source => 
+                    source.Creator.UserName))
+                .ForMember(destination => destination.Contributors, options => options.MapFrom(source => 
+                    source.Contributors!.Select(u => u.KnownAs)));
             CreateMap<Photo, PhotoDto>();
+            CreateMap<Photo, PhotoForApprovalDto>()
+                .ForMember(destination => destination.UserName, options => options.MapFrom(source => 
+                    source.AppUser.UserName));
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<RegisterDto, AppUser>();
+            CreateMap<ProjectUpdateDto, Project>();
             CreateMap<Message, MessageDto>()
                 .ForMember(destination => destination.SenderPhotoUrl, options => options.MapFrom(source => 
                     source.Sender!.Photos!.FirstOrDefault(x => x.IsMain)!.Url))

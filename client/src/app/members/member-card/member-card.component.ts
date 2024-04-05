@@ -11,4 +11,5 @@ export class MemberCardComponent {
   @Input() member!: Member;
 
   constructor(public presence: PresenceService) { }
+  
 }

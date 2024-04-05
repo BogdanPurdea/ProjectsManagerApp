@@ -1,1 +1,20 @@
-<p>project-detail works!</p>
+<div class="col-12">
+    <h2>{{project.projectName}}</h2>
+    <tabset class="project-tabset" #projectTabs>
+        <tab heading="Description" (selectTab)="onTabActivated($event)">
+            <p>{{project.projectDescription}}</p>
+        </tab>
+        <tab heading="Project files" (selectTab)="onTabActivated($event)">
+            
+        </tab>
+        <tab heading="About the creator" (selectTab)="onTabActivated($event)">
+            <h3>Creator</h3>
+            <p>{{project.creatorName}}</p>
+        </tab>
+        <tab heading="Contributors" (selectTab)="onTabActivated($event)">
+            <p>{{project.contributors}}</p>
+        </tab>
+    </tabset>
+    <button id="btn" class="btn btn-primary">Edit</button>
+    <button id="btn" class="btn btn-danger">Delete</button>
+</div>

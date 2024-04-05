@@ -1,1 +1,15 @@
-<p>photo-management works!</p>
+<div class="row">
+    <table class="table">
+        <tr>
+            <th style="width: 30%">Photo</th>
+            <th style="width: 40%">UserName</th>
+            <th style="width: 10%"></th>
+        </tr>
+        <tr *ngFor="let photo of photos">
+            <img src="{{photo?.url}}" alt="{{photo?.url}}" class="img-thumbnail p-1">
+            <td>{{photo?.userName}}</td>
+            <td><button (click)="approvePhoto(photo!)" class="btn btn-info">Approve</button></td>
+            <td><button (click)="rejectPhoto(photo!)" class="btn btn-info">Reject</button></td>
+        </tr>
+    </table>
+</div>

@@ -44,5 +44,30 @@ namespace API.Data
             await userManager.CreateAsync(admin, "Pa$$w0rd");
             await userManager.AddToRolesAsync(admin, new[] {"Admin", "Moderator"});
         }
+
+        public static async Task SeedProjects(DataContext context)
+        {
+            if (await context.Projects.AnyAsync()) return;
+
+            var projectData = await System.IO.File.ReadAllTextAsync("Data/ProjectSeedData.json");
+            var projects = JsonSerializer.Deserialize<List<Project>>(projectData);
+            if (projects == null) return;
+
+            foreach (var project in projects)
+            {
+                project.Creator!.UserName = project.Creator.UserName.ToLower();
+                project.Creator = context.Users.FirstOrDefault(user => user.UserName == project.Creator.UserName)!;
+                var updatedContributors = new List<AppUser>();
+                foreach(var contributor in project.Contributors!)
+                {
+                    contributor.UserName = contributor.UserName.ToLower();
+                    updatedContributors.Add(context.Users.FirstOrDefault(user => user.UserName == contributor.UserName)!);
+                }
+                project.Contributors = updatedContributors;
+                context.Projects.Add(project);
+            }
+
+            await context.SaveChangesAsync();
+        }
     }
 }
