@@ -6,7 +6,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { TestErrosComponent } from './errors/test-errors/test-errors.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
@@ -17,6 +17,7 @@ import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { ProjectDetailedResolver } from './_resolvers/project-detailed.resolver';
+import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,15 +28,16 @@ const routes: Routes = [
     children: [
       {path: 'projects', component: ProjectListComponent},
       {path: 'projects/:id', component: ProjectDetailComponent, resolve: {project: ProjectDetailedResolver}},
+      {path: 'projects/edit', component: ProjectEditComponent},
       {path: 'members', component: MemberListComponent},
       {path: 'members/:userName', component: MemberDetailComponent, resolve: {member: MemberDetailedResolver}},
-      {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
+      {path: 'member/edit', component: MemberEditComponent/*, canDeactivate: [PreventUnsavedChangesGuard]*/},
       {path: 'lists', component: ListsComponent},
       {path: 'messages', component: MessagesComponent},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
     ]
   },
-  {path: 'errors', component: TestErrosComponent},
+  {path: 'errors', component: TestErrorsComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path: '**', component: NotFoundComponent, pathMatch: 'full'},

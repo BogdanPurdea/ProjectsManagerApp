@@ -1,1 +1,20 @@
-<p>project-edit works!</p>
+<div class="col-8">
+    <tabset class="member-tabset">
+        <tab heading="About this project">
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateProject()">
+                <h4 class="mt-2">Description</h4>
+                <textarea class="form-control" [(ngModel)]="project.projectDescription" name="description" rows="6"></textarea>
+                <h4 class="mt-2">About the creator </h4>
+                <textarea class="form-control" [(ngModel)]="project.creatorName" name="creator" rows="6"></textarea>
+                <h4 class="mt-2">Contributors </h4>
+                <textarea class="form-control" [(ngModel)]="project.contributors" name="contributors" rows="6"></textarea>
+            </form>
+        </tab>
+        <tab heading="Project files">
+
+        </tab>
+    </tabset>
+    <div class="card-footer">
+        <button form="editForm" type="submit" class="btn btn-success btn-block" [disabled]="editForm.pristine">Save changes</button>
+    </div>
+</div>

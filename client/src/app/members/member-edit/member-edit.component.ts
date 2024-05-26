@@ -22,12 +22,13 @@ export class MemberEditComponent implements OnInit{
     }
   }
 
-  constructor(private accountService: AccountService, private memberService: MembersService, 
+  constructor(private accountService: AccountService,
+    private memberService: MembersService, 
     private toastr: ToastrService) { 
-    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
-      if(user)
-        this.user = user;
-    });
+      this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
+        if(user)
+          this.user = user;
+      });
   }
 
   ngOnInit(): void {
@@ -37,13 +38,13 @@ export class MemberEditComponent implements OnInit{
   loadMember() {
     this.memberService.getMember(this.user.userName).subscribe(member => {
       this.member = member;
-    })
+    });
   }
 
   updateMember() {
     this.memberService.updateMember(this.member).subscribe(() => {
       this.toastr.success('Profile updated successfully');
       this.editForm.reset(this.member);
-    }) 
+    });
   }
 }

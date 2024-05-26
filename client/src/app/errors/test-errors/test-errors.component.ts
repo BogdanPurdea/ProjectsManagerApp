@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './test-errors.component.html',
   styleUrls: ['./test-errors.component.css']
 })
-export class TestErrosComponent{
+export class TestErrorsComponent{
   baseUrl = 'https://localhost:7137/api/';
   validationErrors: string[] = [];
 

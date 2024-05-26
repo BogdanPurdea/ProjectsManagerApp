@@ -6,6 +6,8 @@ using API.Middleware;
 using Microsoft.AspNetCore.Identity;
 using API.Entities;
 using API.SignalR;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,13 @@ builder.Services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1"});
     });
+    
+// builder.Services.Configure<KestrelServerOptions>(options =>
+// {
+//     options.ConfigureHttpsDefaults(options =>
+//         options.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
+// });
+
 builder.Services.AddApplicationServices(builder.Configuration);
 
 builder.Services.AddControllers();
