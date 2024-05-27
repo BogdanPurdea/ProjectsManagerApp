@@ -2,19 +2,20 @@
     <h2>{{project.projectName}}</h2>
     <tabset class="project-tabset" #projectTabs>
         <tab heading="Description" (selectTab)="onTabActivated($event)">
-            <p>{{project.projectDescription}}</p>
+            <textarea class="form-control" *ngIf="project.creatorName === user.userName" [(ngModel)]="project.projectDescription" name="description" rows="3"></textarea>
+            <p *ngIf="project.creatorName !== user.userName">{{project.projectDescription}}</p>
         </tab>
         <tab heading="Project files" (selectTab)="onTabActivated($event)">
-            
-        </tab>
-        <tab heading="About the creator" (selectTab)="onTabActivated($event)">
-            <h3>Creator</h3>
-            <p>{{project.creatorName}}</p>
+            <app-file-editor [project]="project"></app-file-editor>
         </tab>
         <tab heading="Contributors" (selectTab)="onTabActivated($event)">
             <p>{{project.contributors}}</p>
         </tab>
+        <tab heading="Creator" (selectTab)="onTabActivated($event)">
+            <p>{{project.creatorName}}</p>
+        </tab>
+        
     </tabset>
-    <button id="btn" class="btn btn-primary" [routerLink]="['/projects/edit']">Edit</button>
-    <button id="btn" class="btn btn-danger">Delete</button>
+    <button id="btn" class="btn btn-primary" *ngIf="project.creatorName === user.userName" (click)="updateProject()">Update</button>
+    <button id="btn" class="btn btn-danger" *ngIf="project.creatorName === user.userName" (click)="onDelete()" [routerLink]="['/projects']">Delete this project</button>
 </div>

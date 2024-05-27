@@ -62,11 +62,18 @@ export class ProjectsService {
       }));
   }
 
-  updateProject(id: number) {
-    return this.http.put(this.baseUrl + 'projects', id);
+  updateProject(id: number, project: Project) {
+    return this.http.put(this.baseUrl + 'projects/' + id, project).pipe(map(() => {
+      const index = this.projects.indexOf(project);
+      this.projects[index] = project;
+    }));
   }
 
   deleteProject(id: number) {
     return this.http.delete(this.baseUrl + 'projects/' + id);
+  }
+
+  deleteFile(fileId: number) {
+    return this.http.delete(this.baseUrl + 'projects/delete-file/'+ fileId);
   }
 }

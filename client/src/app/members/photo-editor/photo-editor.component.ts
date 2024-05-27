@@ -20,7 +20,8 @@ export class PhotoEditorComponent implements OnInit{
   baseUrl = environment.apiUrl;
   user!: User;
 
-  constructor(private accountService: AccountService, private memberService: MembersService) {
+  constructor(private accountService: AccountService, 
+    private memberService: MembersService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       if(user)
         this.user = user;
@@ -66,7 +67,7 @@ export class PhotoEditorComponent implements OnInit{
 
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
-    }
+    };
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if(response) {
@@ -78,6 +79,6 @@ export class PhotoEditorComponent implements OnInit{
           this.accountService.setCurrentUser(this.user);
         }
       }
-    }
+    };
   }
 }

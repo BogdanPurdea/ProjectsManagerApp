@@ -1,3 +1,5 @@
+import { ProjectFile } from "./projectFile";
+
 export interface Project {
     id: number;
     projectName: string;
@@ -6,4 +8,5 @@ export interface Project {
     isFinished: boolean;
     isApproved: boolean;
     contributors: string[];
+    files: ProjectFile[];
   }
