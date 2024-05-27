@@ -22,6 +22,7 @@ namespace API.Data
         public DbSet<Connection> Connections { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectFile> Files { get; set; }
         public DataContext(DbContextOptions options) : base(options)
         {
         }
@@ -60,6 +61,10 @@ namespace API.Data
                 .HasOne(u => u.Creator)
                 .WithMany(p => p.CreatedProjects)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProjectFile>()
+                .HasOne(u => u.Project)
+                .WithMany(f => f.Files);
 
             builder.ApplyUtcDateTimeConverter();
         }

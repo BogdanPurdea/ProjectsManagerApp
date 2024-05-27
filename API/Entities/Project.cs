@@ -14,5 +14,6 @@ namespace API.Entities
         public bool IsFinished { get; set; }
         public bool IsApproved { get; set; }
         public ICollection<AppUser>? Contributors { get; set; }
+        public ICollection<ProjectFile>? Files { get; set; }
     }
 }

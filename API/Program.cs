@@ -16,12 +16,6 @@ builder.Services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1"});
     });
-    
-// builder.Services.Configure<KestrelServerOptions>(options =>
-// {
-//     options.ConfigureHttpsDefaults(options =>
-//         options.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
-// });
 
 builder.Services.AddApplicationServices(builder.Configuration);
 

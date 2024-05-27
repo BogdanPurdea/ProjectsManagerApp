@@ -2,14 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Helpers;
 using API.Interfaces;
+using API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API.Controllers
 {
@@ -18,10 +21,12 @@ namespace API.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
-        public ProjectsController(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IFileService fileService;
+        public ProjectsController(IUnitOfWork unitOfWork, IMapper mapper, IFileService fileService)
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+            this.fileService = fileService;
         }
 
         [HttpGet]
@@ -36,14 +41,10 @@ namespace API.Controllers
             return Ok(projects);
         }
 
-
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetProject")]
         public async Task<ActionResult<ProjectDto>> GetProjectById(int id)
         {
-            var creatorName = User.GetUserName();
-            var project = await unitOfWork.ProjectRepository.GetProjectAsync(id);
-            project.CreatorName = creatorName;
-            return project;
+            return await unitOfWork.ProjectRepository.GetProjectAsync(id);
         }
 
         [HttpPost]
@@ -102,5 +103,54 @@ namespace API.Controllers
             return BadRequest("Could not delete project");
         }
 
+        [HttpPost("add-file/{projectId}")]
+        public async Task<ActionResult<ProjectFileDto>> AddFile(int projectId, IFormFile file)
+        {
+            var project = await unitOfWork.ProjectRepository.GetProjectByIdAsync(projectId);
+
+            var result = await fileService.AddFileAsync(file);
+
+            if(result.Error != null) return BadRequest(result.Error.Message);
+
+            var projectFile = new ProjectFile
+            {
+                Name = file.FileName,
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId,
+                Size = file.Length,
+                Type = file.GetType().ToString(),
+                LastModified = DateTime.Now
+            };
+            if(project.Files.IsNullOrEmpty())
+                project.Files = new List<ProjectFile>();
+            project.Files?.Add(projectFile);
+
+            if(await unitOfWork.Complete())
+            {
+                return CreatedAtRoute("GetProject", new{id = project.Id}, mapper.Map<ProjectFileDto>(projectFile));
+            }
+
+            return BadRequest("Problem adding file");
+        }
+
+        [HttpDelete("delete-file/{fileId}")]
+        public async Task<ActionResult> DeletePhoto(int fileId)
+        {
+            var projectFile = await unitOfWork.FileRepository.GetFileByIdAsync(fileId);
+
+            if(projectFile == null) return NotFound();
+
+            if(projectFile.PublicId != null)
+            {
+                var result = await fileService.DeleteFileAsync(projectFile.PublicId);
+                if(result.Error != null) return BadRequest(result.Error.Message);
+            }
+
+            unitOfWork.FileRepository.RemoveFile(projectFile);
+
+            if(await unitOfWork.Complete()) return Ok();
+
+            return BadRequest("Failed to delete the file");
+        }
     }
 }

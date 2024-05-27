@@ -25,6 +25,8 @@ namespace API.Data
 
         public IPhotoRepository PhotoRepository => new PhotoRepository(context, mapper);
 
+        public IFileRepository FileRepository => new FileRepository(context, mapper);
+
         public async Task<bool> Complete()
         {
             return await context.SaveChangesAsync() > 0;

@@ -15,5 +15,6 @@ namespace API.DTOs
         public bool IsFinished { get; set; }
         public bool IsApproved { get; set; }
         public ICollection<string>? Contributors { get; set; }
+        public ICollection<ProjectFile>? Files { get; set; }
     }
 }

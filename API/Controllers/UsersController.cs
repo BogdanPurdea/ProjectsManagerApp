@@ -75,13 +75,12 @@ namespace API.Controllers
             var photo = new Photo
             {
                 Url = result.SecureUrl.AbsoluteUri,
-                PublicId = result.PublicId
+                PublicId = result.PublicId,
+                IsMain = false,
+                IsApproved = "unapproved"
             };
 
-            photo.IsMain = false;
-            photo.IsApproved = "unapproved";
-
-            user.Photos.Add(photo);
+            user.Photos?.Add(photo);
 
             if(await unitOfWork.Complete())
             {

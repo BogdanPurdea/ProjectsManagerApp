@@ -23,6 +23,7 @@ namespace API.Helpers
                 .ForMember(destination => destination.Contributors, options => options.MapFrom(source => 
                     source.Contributors!.Select(u => u.KnownAs)));
             CreateMap<Photo, PhotoDto>();
+            CreateMap<ProjectFile, ProjectFileDto>();
             CreateMap<Photo, PhotoForApprovalDto>()
                 .ForMember(destination => destination.UserName, options => options.MapFrom(source => 
                     source.AppUser.UserName));
