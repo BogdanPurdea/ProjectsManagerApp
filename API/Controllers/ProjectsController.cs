@@ -119,7 +119,7 @@ namespace API.Controllers
                 PublicId = result.PublicId,
                 Size = file.Length,
                 Type = file.GetType().ToString(),
-                LastModified = DateTime.Now
+                LastModified = DateTime.Now,
             };
             if(project.Files.IsNullOrEmpty())
                 project.Files = new List<ProjectFile>();

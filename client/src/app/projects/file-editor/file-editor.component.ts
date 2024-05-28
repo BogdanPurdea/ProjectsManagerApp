@@ -45,9 +45,8 @@ export class FileEditorComponent implements OnInit{
   initializeUploader() {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'projects/add-file/' + this.project.id,
-      authToken: 'Bearer' + this.user.token,
+      authToken: 'Bearer ' + this.user.token,
       isHTML5: true,
-      allowedFileType: ['*'],
       removeAfterUpload: true,
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024
@@ -56,7 +55,7 @@ export class FileEditorComponent implements OnInit{
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
     };
-    
+
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if(response) {
         const file: ProjectFile = JSON.parse(response);

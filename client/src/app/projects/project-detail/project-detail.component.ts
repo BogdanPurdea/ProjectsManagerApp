@@ -33,20 +33,7 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.project = data['project'];
-    })
-
-    this.route.queryParams.subscribe(params => {
-      params['tab'] ? this.selectTab(params['tab']) :
-        this.selectTab(0);
-    })
-  }
-
-  selectTab(tabId: number) {
-    this.projectTabs.tabs[tabId].active = true;
-  }
-
-  onTabActivated(data: TabDirective) {
-    this.activeTab = data;
+    });
   }
 
   onDelete() {

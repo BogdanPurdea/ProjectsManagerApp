@@ -29,7 +29,7 @@ const routes: Routes = [
       {path: 'projects/:id', component: ProjectDetailComponent, resolve: {project: ProjectDetailedResolver}},
       {path: 'members', component: MemberListComponent},
       {path: 'members/:userName', component: MemberDetailComponent, resolve: {member: MemberDetailedResolver}},
-      {path: 'member/edit', component: MemberEditComponent/*, canDeactivate: [PreventUnsavedChangesGuard]*/},
+      {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'lists', component: ListsComponent},
       {path: 'messages', component: MessagesComponent},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},

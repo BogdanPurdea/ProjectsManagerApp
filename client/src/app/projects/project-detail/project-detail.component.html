@@ -1,17 +1,17 @@
 <div class="col-12">
     <h2>{{project.projectName}}</h2>
     <tabset class="project-tabset" #projectTabs>
-        <tab heading="Description" (selectTab)="onTabActivated($event)">
+        <tab heading="Description">
             <textarea class="form-control" *ngIf="project.creatorName === user.userName" [(ngModel)]="project.projectDescription" name="description" rows="3"></textarea>
             <p *ngIf="project.creatorName !== user.userName">{{project.projectDescription}}</p>
         </tab>
-        <tab heading="Project files" (selectTab)="onTabActivated($event)">
+        <tab heading="Project files">
             <app-file-editor [project]="project"></app-file-editor>
         </tab>
-        <tab heading="Contributors" (selectTab)="onTabActivated($event)">
+        <tab heading="Contributors">
             <p>{{project.contributors}}</p>
         </tab>
-        <tab heading="Creator" (selectTab)="onTabActivated($event)">
+        <tab heading="Creator">
             <p>{{project.creatorName}}</p>
         </tab>
         
