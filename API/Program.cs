@@ -6,8 +6,6 @@ using API.Middleware;
 using Microsoft.AspNetCore.Identity;
 using API.Entities;
 using API.SignalR;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.AspNetCore.Server.Kestrel.Https;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,13 +56,16 @@ app.UseCors("AllowOrigin");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-
 app.UseAuthorization();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.MapControllers();
 
 app.MapHub<PresenceHub>("hubs/presence");
 app.MapHub<MessageHub>("hubs/message");
+app.MapFallbackToController("Index", "Fallback");
 
 //Seed data
 using var scope = app.Services.CreateScope();
