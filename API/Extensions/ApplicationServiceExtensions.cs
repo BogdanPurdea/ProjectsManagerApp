@@ -42,7 +42,7 @@ namespace API.Extensions
                     connStr = Environment.GetEnvironmentVariable("DATABASE_URL");
                 }
 
-                options.UseNpgsql(connStr);
+                options.UseSqlServer(connStr);
             });
             return services;
         }
