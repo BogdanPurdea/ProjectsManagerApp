@@ -24,7 +24,7 @@ The application provides convenient features like filtering, sorting, and paging
 For secure access to the software's resources, the application uses JWT authentication tokens.
 
 ## Latest Deployed Version
-The latest deployed version of the application can be accessed [here]([http://your-deployed-link](https://projectmanagementwebapp.azurewebsites.net/)).
+The latest deployed version of the application can be accessed [here](https://projectmanagementwebapp.azurewebsites.net/).
 
 **Note:** The data associated with the deployed version is mocked data meant to demonstrate the functional features.
 
