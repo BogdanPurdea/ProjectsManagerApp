@@ -12,7 +12,7 @@ Users can register and login to an account. Admin account has the privilege of u
 Users can create, read, update, and delete (CRUD) projects. 
 
 ### Real Time Presence and Private Live Messaging
-The application uses SignalR to provide real time presence and a private live messaging service between users.
+The application uses SignalR to provide real-time presence and a private live messaging service between users.
 
 ### Drag and Drop Photo Upload
 Users can upload their profile photos or any necessary images with a drag and drop functionality.
@@ -21,8 +21,17 @@ Users can upload their profile photos or any necessary images with a drag and dr
 The application provides convenient features like filtering, sorting, and paging of data for easier data management.
 
 ### JWT Authentication Tokens
-For secure access to the software's resources, the application uses JWT authentication tokens. 
+For secure access to the software's resources, the application uses JWT authentication tokens.
 
+## Latest Deployed Version
+The latest deployed version of the application can be accessed [here]([http://your-deployed-link](https://projectmanagementwebapp.azurewebsites.net/)).
+
+**Note:** The data associated with the deployed version is mocked data meant to demonstrate the functional features.
+
+## TODO
+- **Frontend Implementation for Creation of Projects**: Implement frontend functionality to allow users to create projects directly from the application interface.
+- **Frontend Implementation for Deletion of Projects**: Implement frontend functionality to allow users to delete projects directly from the application interface.
+  
 ## Technologies Used
 
 - **ASP.NET Core**: This is used for building the server-side of the application.
