@@ -23,11 +23,6 @@ The application provides convenient features like filtering, sorting, and paging
 ### JWT Authentication Tokens
 For secure access to the software's resources, the application uses JWT authentication tokens.
 
-## Latest Deployed Version
-The latest deployed version of the application can be accessed [here](https://projectmanagementwebapp.azurewebsites.net/).
-
-**Note:** The data associated with the deployed version is mocked data meant to demonstrate the functional features.
-
 ## TODO
 - **Frontend Implementation for Creation of Projects**: Implement frontend functionality to allow users to create projects directly from the application interface.
 - **Frontend Implementation for Deletion of Projects**: Implement frontend functionality to allow users to delete projects directly from the application interface.
