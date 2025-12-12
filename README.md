@@ -1,7 +1,8 @@
+NOTE: ARCHIVED REPO
 # Project Management ASP.NET Core and Angular Application
 
 ## Overview
-This application is a project management system built with ASP.NET Core and Angular. It supports basic CRUD operations for managing projects, and features user and admin account capabilities. It uses ASP.NET Core Identity for authentication, JWT Authentication tokens for security, and Entity Framework for data persistence.
+This application is a personal project management system built with ASP.NET Core and Angular. It supports basic CRUD operations for managing projects, and features user and admin account capabilities. It uses ASP.NET Core Identity for authentication, JWT Authentication tokens for security, and Entity Framework for data persistence.
 
 ## Features
 
@@ -23,10 +24,6 @@ The application provides convenient features like filtering, sorting, and paging
 ### JWT Authentication Tokens
 For secure access to the software's resources, the application uses JWT authentication tokens.
 
-## TODO
-- **Frontend Implementation for Creation of Projects**: Implement frontend functionality to allow users to create projects directly from the application interface.
-- **Frontend Implementation for Deletion of Projects**: Implement frontend functionality to allow users to delete projects directly from the application interface.
-  
 ## Technologies Used
 
 - **ASP.NET Core**: This is used for building the server-side of the application.
