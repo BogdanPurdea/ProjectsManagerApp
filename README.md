@@ -1,4 +1,4 @@
-NOTE: ARCHIVED REPO
+# NOTE: ARCHIVED REPO
 # Project Management ASP.NET Core and Angular Application
 
 ## Overview
